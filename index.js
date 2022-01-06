@@ -7,19 +7,29 @@ const client = new Discord.Client({
     intents: [
         "GUILDS",
         "GUILD_MESSAGES",
-        "GUILD_MEMBERS"
+        "GUILD_MEMBERS",
+        "GUILD_MESSAGES",
+        "GUILD_MESSAGE_REACTIONS",
+        "GUILD_EMOJIS_AND_STICKERS"
     ]
 })
 
-client.on("ready", () => {
-    console.log(`Logged in as ${client.user.tag}`)
+client.commands = new Discord.Collection()
+client.events = new Discord.Collection()
+
+;['commandHandler', 'eventHandler'].forEach(handler => {
+        require(`./handlers/${handler}`)(client, Discord)
 })
 
+
+
+
+/*
 client.on("messageCreate", (message) => {
     if(message.content == "hi") {
-        message.reply("Hello World!")
+        message.reply("Hey!")
     }
-})
+*/
 
 const welcomeChannelID = "619296382611750916"
 
