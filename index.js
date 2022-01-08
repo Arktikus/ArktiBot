@@ -21,9 +21,6 @@ client.events = new Discord.Collection()
         require(`./handlers/${handler}`)(client, Discord)
 })
 
-
-
-
 /*
 client.on("messageCreate", (message) => {
     if(message.content == "hi") {
